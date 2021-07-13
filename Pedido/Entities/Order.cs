@@ -8,6 +8,7 @@ namespace Pedido.Entities
         public int Id { get; set; }
         public DateTime Moment { get; set; }
         public OrderStatus Status { get; set; }
+        public Client Client { get; set; } //composicao com class client
 
 
 

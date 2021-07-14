@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
 using Pedido.Entities.Enums;
 
 namespace Pedido.Entities
@@ -45,10 +47,23 @@ namespace Pedido.Entities
 
         public override string ToString()
         {
-            return 
-                Moment
-                + ", "
-                + Status;
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("ORDER SUMMARY:");
+            sb.Append("Order moment: ");
+            sb.AppendLine(Moment.ToString("dd/MM/yyyy HH:mm:ss"));
+            sb.Append("Order status: ");
+            sb.AppendLine(Status.ToString());
+            sb.Append("Client: ");
+            sb.AppendLine(Client.ToString());
+            sb.AppendLine("Order Items:");
+            foreach (OrderItem order in ListOrder)
+            {
+                sb.AppendLine(order.ToString());
+            }
+            sb.Append("Total price: $");
+            sb.AppendLine(Total().ToString("F2", CultureInfo.InvariantCulture));
+
+            return sb.ToString();
         }
     }
 }
